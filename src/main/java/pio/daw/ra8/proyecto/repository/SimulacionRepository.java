@@ -49,13 +49,14 @@ public class SimulacionRepository {
     }
 
     public long contarRicos(Simulacion sim) {
-    List<Individuo> todos = em.createQuery(
-        "SELECT i FROM Individuo i WHERE i.simulacion = :sim",
-        Individuo.class).setParameter("sim", sim).getResultList();
-    
-    double mitad = sim.getSaldoInicial() * 0.5;
-    return todos.stream().filter(i -> i.getSaldoActual() > mitad).count();
-}
+        List<Individuo> todos = em.createQuery(
+            "SELECT i FROM Individuo i WHERE i.simulacion = :sim",
+            Individuo.class).setParameter("sim", sim).getResultList();
+        
+        double mitad = sim.getSaldoInicial() * 0.5;
+        return todos.stream().filter(i -> i.getSaldoActual() > mitad).count();
+    }
+
     public List<Intercambio> top10Intercambios(Simulacion sim) {
         return em.createQuery(
             "SELECT i FROM Intercambio i WHERE i.simulacion = :sim ORDER BY i.importe DESC",

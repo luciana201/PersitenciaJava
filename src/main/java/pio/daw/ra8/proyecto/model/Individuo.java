@@ -8,7 +8,6 @@ public class Individuo {
     @Id
     @GeneratedValue
     private long id;
-
     private String nombre;
     private double saldoActual;
     private double saldoInicial;
